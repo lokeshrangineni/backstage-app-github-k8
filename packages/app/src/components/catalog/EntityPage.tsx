@@ -70,7 +70,7 @@ import {
   isGithubInsightsAvailable,
 } from '@roadiehq/backstage-plugin-github-insights';
 
-
+import { EntityKubernetesContent } from '@backstage/plugin-kubernetes';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -217,6 +217,10 @@ const serviceEntityPage = (
       title="Code Insights">
       <EntityGithubInsightsContent />
     </EntityLayout.Route>
+
+      <EntityLayout.Route path="/kubernetes" title="Kubernetes">
+          <EntityKubernetesContent refreshIntervalMs={30000} />
+      </EntityLayout.Route>
 
   </EntityLayout>
 );
