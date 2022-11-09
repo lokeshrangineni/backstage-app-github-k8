@@ -50,6 +50,7 @@ oc -n default get secret $(oc -n default get sa deployer -o=json \
 | jq -r '.data["token"]' \
 | base64 --decode
 
+# careful if you are executing below command on production. You are giving admin permissions. 
 kubectl create clusterrolebinding deployer --clusterrole=cluster-admin --serviceaccount=default:deployer 
 ```
 
