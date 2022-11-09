@@ -6,3 +6,4 @@
 /packages/backend/node_modules/
 .DS_Store
 /packages/app/node_modules/
+/.env.dev

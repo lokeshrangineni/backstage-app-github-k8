@@ -25,16 +25,16 @@ backend:
     credentials: true
   # This is for local development only, it is not recommended using this in production
   # The production database configuration is stored in app-config.production.yaml
+  #database:
+  #  client: better-sqlite3
+  #  connection: ':memory:'
   database:
-    client: better-sqlite3
-    connection: ':memory:'
-#  database:
-#    client: pg
-#    connection:
-#      host: ${POSTGRES_HOST}
-#      port: ${POSTGRES_PORT}
-#      user: ${POSTGRES_USER}
-#      password: ${POSTGRES_PASSWORD}
+    client: pg
+    connection:
+      host: ${POSTGRES_HOST}
+      port: ${POSTGRES_PORT}
+      user: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
   cache:
     store: memory
   # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
@@ -84,7 +84,7 @@ kubernetes:
           name: minikube
           authProvider: serviceAccount
           skipTLSVerify: true
-          skipMetricsLookup: true
+          skipMetricsLookup: false
           serviceAccountToken: ${K8S_MINIKUBE_TOKEN}
 
 scaffolder:
