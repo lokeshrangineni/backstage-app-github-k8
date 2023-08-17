@@ -1,6 +1,23 @@
 # backstage-app-github-k8
 backstage scaffolded application with github and k8 plugins installed.
 
+
+### Database Configurations  
+First spin up the postgres on local using below command. 
+```shell
+docker run --name some-postgres -e POSTGRES_PASSWORD=passw0rd! -d -p 5432:5432 postgres
+```
+
+The current configurations are updated in the .env file as below.
+```properties
+export POSTGRES_PASSWORD=passw0rd!
+export POSTGRES_USER=postgres
+export POSTGRES_HOST=localhost
+export POSTGRES_PORT=5432
+```
+
+### Backstage
+
 To start the app, Update .env file with correct configurations and run:
 
 ```sh
@@ -49,6 +66,8 @@ oc -n default get secret $(oc -n default get sa deployer -o=json \
 | jq -r '.secrets[0].name') -o=json \
 | jq -r '.data["token"]' \
 | base64 --decode
+
+oc -n default get secret $(oc -n default get sa deployer -o=json | jq -r '.secrets[0].name') -o=json | jq -r '.data["token"]' | base64 --decode
 
 # careful if you are executing below command on production. You are giving admin permissions. 
 kubectl create clusterrolebinding deployer --clusterrole=cluster-admin --serviceaccount=default:deployer 
